@@ -23,7 +23,7 @@ const questions = [
   [
     "What is the minimum material to force checkmate with King?",
     "An extra pawn in a pure king and pawn ending decides the game over __% of the time. Team with the closet percent recieves the points",
-    "What is Philidor's position?",
+    "What is the 50 move rule for endgames?",
     "Can a lone Bishop checkmate?",
     "What is opposition in King endgames?"
   ],
@@ -39,7 +39,7 @@ const questions = [
     "In what year was FIDE founded?",
     "Who defeated Kasparov in 1997?",
     "Which country hosted the 1972 \"Match of the Century\"?",
-    "Who is the longest-reigning World Champion?"
+    "What was chess first called when it was created?"
   ],
   [
     "How many squares are on a chess board?",
@@ -61,7 +61,7 @@ const answers = [
   [
     "King and queen, or king and rook, depending on the position",
     "An extra pawn in a pure king and pawn ending decides the game over 90% of the time.",
-    "A defensive setup that holds a draw in rook endgames",
+    "This rule allows a player to claim a draw if 50 moves pass without any capture or pawn movement.",
     "No; king and bishop versus king is a draw",
     "A king-to-king opposition that restricts the opposing king"
   ],
@@ -77,7 +77,7 @@ const answers = [
     "1924",
     "IBM's Deep Blue",
     "Iceland",
-    "Emanuel Lasker"
+    "Chaturanga"
   ],
   [
     "64",
