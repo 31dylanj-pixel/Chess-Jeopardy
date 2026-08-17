@@ -7,6 +7,7 @@ A GitHub Pages version of the Chess Club Jeopardy game originally created in Can
 - `index.html` — page structure
 - `style.css` — all styling
 - `script.js` — questions, answers, board generation, and game logic
+- `pieces` — A folder containg svg files for all pieces
 
 ## Edit the questions
 
