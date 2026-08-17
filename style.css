@@ -1,0 +1,291 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --background: #1e1b4b;
+  --indigo: #3730a3;
+  --indigo-dark: #312e81;
+  --gold: #f59e0b;
+  --gold-light: #fbbf24;
+  --text: #ffffff;
+  --muted: #c7d2fe;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--background);
+  color: var(--text);
+  overflow: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+.slide {
+  display: none;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.slide.active {
+  display: flex;
+}
+
+/* Title */
+.title-slide {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(30, 27, 75, 0.78), rgba(30, 27, 75, 0.88)),
+    url("https://images.pexels.com/photos/29778421/pexels-photo-29778421.jpeg?auto=compress&cs=tinysrgb&w=1920")
+    center / cover no-repeat;
+  opacity: 0.8;
+}
+
+.title-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title-content h1,
+.jeopardy-slide h2 {
+  font-family: "Playfair Display", serif;
+  margin: 0;
+}
+
+.title-content h1 {
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 900;
+}
+
+.title-content p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Buttons */
+.primary-button,
+.secondary-button,
+.back-button {
+  border: 0;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s, background 0.2s;
+}
+
+.primary-button {
+  margin-top: 1.25rem;
+  padding: 0.8rem 2rem;
+  border-radius: 0.6rem;
+  background: var(--gold);
+  color: var(--background);
+  font-weight: 700;
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+  background: var(--gold-light);
+}
+
+.secondary-button {
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.6rem;
+  background: transparent;
+  border: 1px solid #a5b4fc;
+  color: white;
+  font-weight: 700;
+}
+
+.secondary-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.back-button {
+  background: none;
+  color: white;
+  opacity: 0.65;
+  text-decoration: underline;
+  margin-top: 0.5rem;
+}
+
+.back-button:hover {
+  opacity: 1;
+}
+
+/* Jeopardy */
+.jeopardy-slide {
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.jeopardy-slide h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.jeopardy-board {
+  width: 100%;
+  max-width: 960px;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(6, minmax(70px, 1fr));
+  gap: 0.5rem;
+}
+
+.category-cell,
+.jeopardy-cell {
+  border-radius: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.category-cell {
+  background: var(--indigo-dark);
+  color: white;
+  font-weight: 700;
+  padding: 0.75rem;
+}
+
+.jeopardy-cell {
+  border: 0;
+  background: var(--gold);
+  color: var(--background);
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.jeopardy-cell:hover:not(.used) {
+  transform: scale(1.04);
+}
+
+.jeopardy-cell.used {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.question-modal {
+  width: 100%;
+  max-width: 700px;
+  padding: 2.5rem;
+  border-radius: 1.25rem;
+  background: #312e81;
+  color: white;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.modal-category {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0.7;
+}
+
+.modal-points {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.modal-question {
+  margin: 0 0 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+.modal-answer {
+  display: none;
+  margin: 0 0 1.5rem;
+  color: #fde68a;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.modal-answer.show {
+  display: block;
+}
+
+.modal-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.modal-buttons .primary-button {
+  margin-top: 0;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  body {
+    overflow: auto;
+  }
+
+  .jeopardy-slide {
+    min-height: 100vh;
+  }
+
+  .jeopardy-board {
+    gap: 0.25rem;
+    grid-template-rows: repeat(6, minmax(55px, 1fr));
+  }
+
+  .category-cell {
+    font-size: 0.75rem;
+    padding: 0.35rem;
+  }
+
+  .jeopardy-cell {
+    font-size: 1rem;
+  }
+
+  .question-modal {
+    padding: 1.5rem;
+  }
+}

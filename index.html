@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chess Club Jeopardy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Slide 1: Title -->
+  <section class="slide active title-slide" id="slide-title">
+    <div class="hero-bg" aria-hidden="true"></div>
+
+    <div class="title-content">
+      <h1>Chess Club</h1>
+      <p>Welcome to Jeopardy Night!</p>
+      <button class="primary-button" onclick="goSlide('slide-jeopardy')">
+        Start Jeopardy →
+      </button>
+    </div>
+  </section>
+
+  <!-- Slide 2: Jeopardy -->
+  <section class="slide jeopardy-slide" id="slide-jeopardy">
+    <h2>Chess Jeopardy!</h2>
+
+    <div id="jeopardy-board" class="jeopardy-board"></div>
+
+    <button class="back-button" onclick="goSlide('slide-title')">
+      ← Back to Title
+    </button>
+  </section>
+
+  <!-- Question Modal -->
+  <div id="question-modal" class="modal-overlay" onclick="closeModal()">
+    <div class="question-modal" onclick="event.stopPropagation()">
+      <p id="modal-category" class="modal-category"></p>
+      <p id="modal-points" class="modal-points"></p>
+      <p id="modal-question" class="modal-question"></p>
+      <p id="modal-answer" class="modal-answer" aria-live="polite"></p>
+
+      <div class="modal-buttons">
+        <button id="show-answer-btn" class="primary-button" onclick="showAnswer()">
+          Show Answer
+        </button>
+        <button class="secondary-button" onclick="closeModal()">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
