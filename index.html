@@ -18,13 +18,53 @@
     <div class="title-content">
       <h1>Chess Club</h1>
       <p>Welcome to Chess Jeopardy!</p>
-      <button class="primary-button" onclick="goSlide('slide-rules')">
-        Rules & Instructions →
+      <button class="primary-button" onclick="goSlide('slide-instructions')">
+        Instructions →
       </button>
     </div>
   </section>
 
   <!-- Slide 2: Rules & Instructions -->
+  <section class="slide rules-slide" id="slide-instructions">
+    <div class="rules-content">
+      <h2>Instructions</h2>
+      <p class="rules-subtitle">Before we begin, here are some instructions.</p>
+
+      <div class="rules-grid">
+
+        <div class="rule-card">
+          <div class="rule-number">1</div>
+          <h3>Get Together in a Team</h3>
+          <p>
+            Get together with your friends to make _ teams of _
+          </p>
+        </div>
+
+        <div class="rule-card">
+          <div class="rule-number">2</div>
+          <h3>Sit Down and Raise Your Hands</h3>
+          <p>
+            After you find your team, sit down quietly and raise your hand. We will hand you a whiteboard
+          </p>
+        </div>
+
+      <div class="rules-note">
+        ♟️ <strong>Reminder:</strong> Once you have formed a team, you may not switch.
+      </div>
+
+      <div class="rules-buttons">
+        <button class="back-button" onclick="goSlide('slide-title')">
+          ← Back
+        </button>
+
+        <button class="primary-button" onclick="goSlide('slide-rules')">
+          Rules →
+        </button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Slide 3: Rules -->
   <section class="slide rules-slide" id="slide-rules">
     <div class="rules-content">
       <h2>Rules & Instructions</h2>
@@ -76,13 +116,13 @@
         </button>
 
         <button class="primary-button" onclick="goSlide('slide-jeopardy')">
-          Start Jeopardy →
+          Start Jeopardy! →
         </button>
       </div>
     </div>
   </section>
   
-  <!-- Slide 3: Jeopardy -->
+  <!-- Slide 4: Jeopardy -->
   <section class="slide jeopardy-slide" id="slide-jeopardy">
     <h2>Chess Jeopardy!</h2>
 
