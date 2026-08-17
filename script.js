@@ -22,7 +22,7 @@ const questions = [
   ],
   [
     "What is the minimum material to force checkmate with King?",
-    "What is the \"square rule\" in pawn endgames?",
+    "An extra pawn in a pure king and pawn ending decides the game over __% of the time. Team with the closet percent recieves the points",
     "What is Philidor's position?",
     "Can a lone Bishop checkmate?",
     "What is opposition in King endgames?"
@@ -60,7 +60,7 @@ const answers = [
   ],
   [
     "King and queen, or king and rook, depending on the position",
-    "A pawn can catch a passed pawn by counting the squares to promotion",
+    "An extra pawn in a pure king and pawn ending decides the game over 90% of the time.",
     "A defensive setup that holds a draw in rook endgames",
     "No; king and bishop versus king is a draw",
     "A king-to-king opposition that restricts the opposing king"
