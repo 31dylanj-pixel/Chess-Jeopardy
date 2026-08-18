@@ -14,11 +14,11 @@ const categories = [
 
 const questions = [
   [
-    "Name the opening: 1.e4 e5 2.Nf3 Nc6 3.Bb5",
-    "What is the Sicilian Defense first move for Black?",
-    "Name the gambit: 1.d4 d5 2.c4",
-    "Which opening starts with 1.f4?",
-    "What is the move order for the King's Indian Defense?"
+    "Name the opening: 1.e4 e5 2.Nf3 Nc6 3.Bb5 (Ref. Slide 2)",
+    "What is the Sicilian Defense first move for Black? (Ref. Slide 3)",
+    "Name the gambit: 1.d4 d5 2.c4 (Ref. Slide 4)",
+    "Which opening starts with 1.f4? (Ref. Slide 5)",
+    "What is the move order for the King's Indian Defense? (Ref. Slide 6)"
   ],
   [
     "What is the minimum material to force checkmate with King?",
@@ -38,7 +38,7 @@ const questions = [
     "Who was the first official World Champion?",
     "In what year was FIDE founded?",
     "Who defeated Kasparov in 1997?",
-    "Which country hosted the 1972 \"Match of the Century\"?",
+    "Which country hosted the 1972 \"Match of the Century\"? (Ref. Slide 7)",
     "What was chess first called when it was created?"
   ],
   [
