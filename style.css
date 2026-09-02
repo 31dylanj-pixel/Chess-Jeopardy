@@ -347,9 +347,13 @@ button {
 /* Question Timer */
 
 .question-timer {
-  width: 100%;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 80%;
   max-width: 900px;
-  margin-top: 3rem;
   text-align: center;
 }
 
