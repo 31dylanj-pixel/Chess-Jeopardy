@@ -347,7 +347,7 @@ button {
 /* Question Timer */
 
 .question-timer {
-  position: absolute;
+  position: fixed;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
