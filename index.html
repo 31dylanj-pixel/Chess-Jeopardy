@@ -136,22 +136,30 @@
     </button>
   </section>
 
-  <!-- Question Modal -->
-  <div id="question-modal" class="modal-overlay" onclick="closeModal()">
-    <div class="question-modal" onclick="event.stopPropagation()">
+  <!-- Question Screen -->
+  <div id="question-modal" class="question-screen">
+    <div class="question-content">
+  
       <p id="modal-category" class="modal-category"></p>
+  
       <p id="modal-points" class="modal-points"></p>
+  
+      <div class="question-divider"></div>
+  
       <p id="modal-question" class="modal-question"></p>
+  
       <p id="modal-answer" class="modal-answer" aria-live="polite"></p>
-
+  
       <div class="modal-buttons">
         <button id="show-answer-btn" class="primary-button" onclick="showAnswer()">
           Show Answer
         </button>
+  
         <button class="secondary-button" onclick="closeModal()">
-          Done
+          ← Back to Board
         </button>
       </div>
+  
     </div>
   </div>
 
