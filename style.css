@@ -171,7 +171,9 @@ button {
 /* Final Jeopardy */
 
 .final-jeopardy-slide {
-  position: relative;
+  position: absolute;
+  inset: 0;
+  z-index: 10;
 
   align-items: center;
   justify-content: center;
@@ -196,8 +198,6 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  animation: finalJeopardyAppear 0.4s ease-out;
 }
 
 .final-jeopardy-label {
@@ -277,18 +277,6 @@ button {
 
 .final-buttons .primary-button {
   margin-top: 0;
-}
-
-@keyframes finalJeopardyAppear {
-  from {
-    opacity: 0;
-    transform: scale(0.97);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
 }
 
 .jeopardy-slide h2 {
