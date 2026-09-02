@@ -194,7 +194,7 @@ button {
 /* Full-Screen Question */
 
 .question-screen {
-  display: none;
+  display: flex;
   position: fixed;
   inset: 0;
   z-index: 100;
@@ -211,10 +211,24 @@ button {
     );
 
   padding: 3rem;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    visibility 0s linear 0.25s;
 }
 
 .question-screen.show {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transition:
+    opacity 0.25s ease,
+    visibility 0s linear 0s;
 }
 
 .question-content {
@@ -227,7 +241,17 @@ button {
   flex-direction: column;
   align-items: center;
 
-  animation: questionAppear 0.25s ease-out;
+  transform: scale(0.97);
+  opacity: 0;
+
+  transition:
+    transform 0.25s ease-out,
+    opacity 0.25s ease-out;
+}
+
+.question-screen.show .question-content {
+  transform: scale(1);
+  opacity: 1;
 }
 
 .modal-category {
