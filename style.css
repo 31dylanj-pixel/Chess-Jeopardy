@@ -161,8 +161,11 @@ button {
 .jeopardy-slide {
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+
   padding: 1rem;
-  gap: 1rem;
+
+  gap: 0.5rem;
 }
 
 .jeopardy-slide h2 {
@@ -231,6 +234,33 @@ button {
   pointer-events: none;
 }
 
+.final-jeopardy-button {
+  width: 100%;
+  max-width: 900px;
+
+  height: 60px;
+
+  border: 0;
+  border-radius: 0.6rem;
+
+  background: var(--gold);
+  color: var(--background);
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.final-jeopardy-button:hover {
+  transform: translateY(-2px);
+  background: var(--gold-light);
+}
 /* Full-Screen Question */
 
 .question-screen {
