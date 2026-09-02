@@ -168,6 +168,129 @@ button {
   gap: 0.5rem;
 }
 
+/* Final Jeopardy */
+
+.final-jeopardy-slide {
+  position: relative;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 3rem;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #3730a3 0%,
+      #312e81 45%,
+      #1e1b4b 100%
+    );
+}
+
+.final-jeopardy-content {
+  width: 100%;
+  max-width: 1100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  animation: finalJeopardyAppear 0.4s ease-out;
+}
+
+.final-jeopardy-label {
+  margin: 0 0 1rem;
+
+  font-size: 1.1rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+
+  color: var(--gold-light);
+}
+
+.final-jeopardy-content h2 {
+  margin: 0;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 900;
+}
+
+.final-divider {
+  width: 140px;
+  height: 4px;
+
+  margin: 2rem 0;
+
+  border-radius: 999px;
+
+  background: var(--gold);
+}
+
+.final-question {
+  max-width: 950px;
+
+  margin: 0 0 2.5rem;
+
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 700;
+
+  line-height: 1.4;
+}
+
+.final-answer {
+  display: none;
+
+  max-width: 850px;
+
+  margin: 0 0 2.5rem;
+
+  font-size: clamp(1.4rem, 3vw, 2.3rem);
+  font-weight: 700;
+
+  color: var(--gold-light);
+
+  line-height: 1.5;
+}
+
+.final-answer.show {
+  display: block;
+
+  animation: answerAppear 0.3s ease-out;
+}
+
+.final-buttons {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 1rem;
+
+  flex-wrap: wrap;
+}
+
+.final-buttons .primary-button {
+  margin-top: 0;
+}
+
+@keyframes finalJeopardyAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .jeopardy-slide h2 {
   font-size: 2rem;
   font-weight: 700;
