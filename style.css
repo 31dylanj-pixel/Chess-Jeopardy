@@ -191,76 +191,146 @@ button {
   pointer-events: none;
 }
 
-/* Modal */
-.modal-overlay {
+/* Full-Screen Question */
+
+.question-screen {
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: 100;
+
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.8);
+
+  background:
+    radial-gradient(
+      circle at center,
+      #3730a3 0%,
+      #312e81 45%,
+      #1e1b4b 100%
+    );
+
+  padding: 3rem;
 }
 
-.modal-overlay.show {
+.question-screen.show {
   display: flex;
 }
 
-.question-modal {
+.question-content {
   width: 100%;
-  max-width: 700px;
-  padding: 2.5rem;
-  border-radius: 1.25rem;
-  background: #312e81;
-  color: white;
+  max-width: 1100px;
+
   text-align: center;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  animation: questionAppear 0.25s ease-out;
 }
 
 .modal-category {
-  margin: 0 0 0.5rem;
-  font-size: 0.85rem;
+  margin: 0 0 1rem;
+
+  font-size: 1.1rem;
+  font-weight: 700;
+
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  opacity: 0.7;
+  letter-spacing: 0.2em;
+
+  color: var(--gold-light);
 }
 
 .modal-points {
-  margin: 0 0 1rem;
-  font-size: 2rem;
+  margin: 0;
+
+  font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 900;
+
+  color: white;
+}
+
+.question-divider {
+  width: 120px;
+  height: 4px;
+
+  margin: 2rem 0;
+
+  border-radius: 999px;
+  background: var(--gold);
 }
 
 .modal-question {
-  margin: 0 0 1.5rem;
-  font-size: 1.25rem;
-  line-height: 1.6;
+  max-width: 950px;
+
+  margin: 0 0 2.5rem;
+
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  font-weight: 700;
+
+  line-height: 1.35;
+
+  color: white;
 }
 
 .modal-answer {
   display: none;
-  margin: 0 0 1.5rem;
-  color: #fde68a;
-  font-size: 1.1rem;
-  line-height: 1.6;
+
+  max-width: 850px;
+
+  margin: 0 0 2.5rem;
+
+  font-size: clamp(1.4rem, 3vw, 2.3rem);
+  font-weight: 700;
+
+  line-height: 1.5;
+
+  color: var(--gold-light);
 }
 
 .modal-answer.show {
   display: block;
+
+  animation: answerAppear 0.3s ease-out;
 }
 
 .modal-buttons {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 0.75rem;
+  align-items: center;
+  gap: 1rem;
+
+  flex-wrap: wrap;
 }
 
 .modal-buttons .primary-button {
   margin-top: 0;
 }
 
+@keyframes questionAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes answerAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 /* Rules & Instructions */
 .rules-slide {
   flex-direction: column;
