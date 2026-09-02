@@ -172,12 +172,16 @@ button {
 
 .jeopardy-board {
   width: 100%;
-  max-width: 960px;
-  flex: 1;
+  max-width: 900px;
+
+  height: 78vh;
+
   display: grid;
+
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  grid-template-rows: repeat(6, minmax(70px, 1fr));
-  gap: 0.5rem;
+  grid-template-rows: repeat(6, minmax(60px, 1fr));
+
+  gap: 0.4rem;
 }
 
 .category-cell {
