@@ -88,6 +88,11 @@ const answers = [
   ]
 ];
 
+let timerInterval = null;
+let timerStartTime = null;
+
+const TIMER_DURATION = 45;
+
 // ------------------------------------------
 // Slide navigation
 // ------------------------------------------
@@ -154,6 +159,8 @@ function showQuestion(column, row, cell) {
 
   document.getElementById("question-modal").classList.add("show");
 
+  startTimer();
+
   // Mark the square as used.
   cell.classList.add("used");
 }
@@ -164,12 +171,45 @@ function showAnswer() {
 }
 
 function closeModal() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+
   document.getElementById("question-modal").classList.remove("show");
 }
-
 // Allow Escape to close the question.
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeModal();
   }
 });
+
+function startTimer() {
+  clearInterval(timerInterval);
+
+  const timerDisplay = document.getElementById("timer-display");
+  const timerBar = document.getElementById("timer-bar");
+
+  timerStartTime = Date.now();
+
+  timerDisplay.textContent = TIMER_DURATION;
+  timerBar.style.transform = "scaleX(1)";
+
+  timerInterval = setInterval(() => {
+    const elapsed = Date.now() - timerStartTime;
+    const remaining = Math.max(0, TIMER_DURATION * 1000 - elapsed);
+
+    const seconds = Math.ceil(remaining / 1000);
+    const progress = remaining / (TIMER_DURATION * 1000);
+
+    timerDisplay.textContent = seconds;
+    timerBar.style.transform = `scaleX(${progress})`;
+
+    if (remaining <= 0) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+
+      timerDisplay.textContent = "0";
+      timerBar.style.transform = "scaleX(0)";
+    }
+  }, 50);
+}
