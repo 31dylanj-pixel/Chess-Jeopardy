@@ -215,6 +215,7 @@ function startTimer() {
 }
 
 function startFinalTimer() {
+
   clearInterval(timerInterval);
 
   const timerDisplay =
@@ -230,16 +231,16 @@ function startFinalTimer() {
 
   timerInterval = setInterval(() => {
 
-    const elapsed = Date.now() - timerStartTime;
+    const elapsed =
+      Date.now() - timerStartTime;
 
     const remaining = Math.max(
       0,
       TIMER_DURATION * 1000 - elapsed
     );
 
-    const seconds = Math.ceil(
-      remaining / 1000
-    );
+    const seconds =
+      Math.ceil(remaining / 1000);
 
     const progress =
       remaining / (TIMER_DURATION * 1000);
@@ -252,11 +253,9 @@ function startFinalTimer() {
     if (remaining <= 0) {
 
       clearInterval(timerInterval);
-
       timerInterval = null;
 
       timerDisplay.textContent = "0";
-
       timerBar.style.transform = "scaleX(0)";
     }
 
@@ -269,14 +268,14 @@ function startFinalTimer() {
 const finalJeopardy = {
   category: "Chess History",
 
-  question:
-    "Who was the first official World Chess Champion?",
+  question: "Who was the first official World Chess Champion?",
 
-  answer:
-    "Wilhelm Steinitz"
+  answer: "Wilhelm Steinitz"
 };
 
 function startFinalJeopardy() {
+
+  // Fill in Final Jeopardy information
   document.getElementById("final-category").textContent =
     finalJeopardy.category;
 
@@ -286,17 +285,22 @@ function startFinalJeopardy() {
   document.getElementById("final-answer").textContent =
     `Answer: ${finalJeopardy.answer}`;
 
+  // Hide the answer
   document.getElementById("final-answer").classList.remove("show");
 
+  // Show the answer button
   document.getElementById("final-show-answer").style.display =
     "inline-block";
 
+  // Go to Final Jeopardy
   goSlide("slide-final-jeopardy");
 
+  // Start the 45-second timer
   startFinalTimer();
 }
 
 function showFinalAnswer() {
+
   document.getElementById("final-answer").classList.add("show");
 
   document.getElementById("final-show-answer").style.display =
@@ -304,8 +308,11 @@ function showFinalAnswer() {
 }
 
 function closeFinalJeopardy() {
+
+  // Stop the timer
   clearInterval(timerInterval);
   timerInterval = null;
 
+  // Return to board
   goSlide("slide-jeopardy");
 }
