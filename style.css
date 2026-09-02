@@ -156,7 +156,14 @@ button {
   gap: 0.5rem;
 }
 
-.category-cell,
+.category-cell {
+  background: var(--indigo-dark);
+  color: white;
+  font-weight: 700;
+  font-size: 1.25rem;
+  padding: 0.75rem;
+}
+
 .jeopardy-cell {
   border-radius: 0.6rem;
   display: flex;
