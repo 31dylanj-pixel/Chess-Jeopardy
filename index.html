@@ -128,18 +128,58 @@
   <!-- Slide 4: Jeopardy -->
   <section class="slide jeopardy-slide" id="slide-jeopardy">
 
-    <div id="jeopardy-board" class="jeopardy-board"></div>
+      <div id="jeopardy-board" class="jeopardy-board"></div>
+    
+      <button class="final-jeopardy-button" onclick="startFinalJeopardy()">
+        FINAL JEOPARDY!
+      </button>
+    
+      <button class="back-button" onclick="goSlide('slide-rules')">
+        ← Back
+      </button>
+    
+    </section>
   
-    <button class="final-jeopardy-button" onclick="startFinalJeopardy()">
-      FINAL JEOPARDY!
-    </button>
+    <!-- Final Jeopardy -->
+  <section class="slide final-jeopardy-slide" id="slide-final-jeopardy">
   
-    <button class="back-button" onclick="goSlide('slide-rules')">
-      ← Back
-    </button>
+    <div class="final-jeopardy-content">
+  
+      <p class="final-jeopardy-label">FINAL JEOPARDY</p>
+  
+      <h2 id="final-category">Chess History</h2>
+  
+      <div class="final-divider"></div>
+  
+      <p id="final-question" class="final-question">
+        This is your Final Jeopardy question.
+      </p>
+  
+      <p id="final-answer" class="final-answer" aria-live="polite">
+        Answer: This is the answer.
+      </p>
+  
+      <div class="final-buttons">
+        <button
+          id="final-show-answer"
+          class="primary-button"
+          onclick="showFinalAnswer()"
+        >
+          Show Answer
+        </button>
+  
+        <button
+          class="secondary-button"
+          onclick="goSlide('slide-jeopardy')"
+        >
+          ← Back to Board
+        </button>
+      </div>
+  
+    </div>
   
   </section>
-
+  
   <!-- Question Screen -->
   <div id="question-modal" class="question-screen">
 
