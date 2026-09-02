@@ -213,3 +213,42 @@ function startTimer() {
     }
   }, 50);
 }
+
+// ==========================================
+// Final Jeopardy
+// ==========================================
+
+const finalJeopardy = {
+  category: "Chess History",
+
+  question:
+    "Who was the first official World Chess Champion?",
+
+  answer:
+    "Wilhelm Steinitz"
+};
+
+function startFinalJeopardy() {
+  document.getElementById("final-category").textContent =
+    finalJeopardy.category;
+
+  document.getElementById("final-question").textContent =
+    finalJeopardy.question;
+
+  document.getElementById("final-answer").textContent =
+    `Answer: ${finalJeopardy.answer}`;
+
+  document.getElementById("final-answer").classList.remove("show");
+
+  document.getElementById("final-show-answer").style.display =
+    "inline-block";
+
+  goSlide("slide-final-jeopardy");
+}
+
+function showFinalAnswer() {
+  document.getElementById("final-answer").classList.add("show");
+
+  document.getElementById("final-show-answer").style.display =
+    "none";
+}
