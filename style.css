@@ -30,13 +30,37 @@ button {
 }
 
 .slide {
-  display: none;
   min-height: 100vh;
   min-height: 100dvh;
+
+  display: flex;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(20px);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    visibility 0s linear 0.45s;
+
+  position: absolute;
+  inset: 0;
 }
 
 .slide.active {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translateY(0);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    visibility 0s linear 0s;
 }
 
 /* Title */
