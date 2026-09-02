@@ -214,6 +214,54 @@ function startTimer() {
   }, 50);
 }
 
+function startFinalTimer() {
+  clearInterval(timerInterval);
+
+  const timerDisplay =
+    document.getElementById("final-timer-display");
+
+  const timerBar =
+    document.getElementById("final-timer-bar");
+
+  timerStartTime = Date.now();
+
+  timerDisplay.textContent = TIMER_DURATION;
+  timerBar.style.transform = "scaleX(1)";
+
+  timerInterval = setInterval(() => {
+
+    const elapsed = Date.now() - timerStartTime;
+
+    const remaining = Math.max(
+      0,
+      TIMER_DURATION * 1000 - elapsed
+    );
+
+    const seconds = Math.ceil(
+      remaining / 1000
+    );
+
+    const progress =
+      remaining / (TIMER_DURATION * 1000);
+
+    timerDisplay.textContent = seconds;
+
+    timerBar.style.transform =
+      `scaleX(${progress})`;
+
+    if (remaining <= 0) {
+
+      clearInterval(timerInterval);
+
+      timerInterval = null;
+
+      timerDisplay.textContent = "0";
+
+      timerBar.style.transform = "scaleX(0)";
+    }
+
+  }, 50);
+}
 // ==========================================
 // Final Jeopardy
 // ==========================================
@@ -244,6 +292,8 @@ function startFinalJeopardy() {
     "inline-block";
 
   goSlide("slide-final-jeopardy");
+
+  startFinalTimer();
 }
 
 function showFinalAnswer() {
@@ -251,4 +301,11 @@ function showFinalAnswer() {
 
   document.getElementById("final-show-answer").style.display =
     "none";
+}
+
+function closeFinalJeopardy() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+
+  goSlide("slide-jeopardy");
 }
