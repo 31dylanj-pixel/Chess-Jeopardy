@@ -195,11 +195,26 @@
   
     <!-- Final Jeopardy Timer -->
     <div class="question-timer">
-      <div id="final-timer-display">45</div>
-  
+
+      <div class="timer-display-row">
+        <span id="final-timer-display">45</span>
+        <span>seconds</span>
+      </div>
+    
       <div class="timer-track">
         <div id="final-timer-bar"></div>
       </div>
+    
+      <div class="timer-controls">
+        <button id="final-timer-pause-btn" onclick="toggleTimer()">
+          Pause
+        </button>
+    
+        <button onclick="restartTimer()">
+          Restart
+        </button>
+      </div>
+    
     </div>
   
   </section>
