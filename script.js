@@ -89,9 +89,14 @@ const answers = [
 ];
 
 let timerInterval = null;
-let timerStartTime = null;
 
 const TIMER_DURATION = 45;
+
+let timerRemaining = TIMER_DURATION * 1000;
+
+let timerPaused = false;
+
+let activeTimerType = null;
 
 // ------------------------------------------
 // Slide navigation
@@ -159,7 +164,7 @@ function showQuestion(column, row, cell) {
 
   document.getElementById("question-modal").classList.add("show");
 
-  startTimer();
+  startTimer("normal");
 
   // Mark the square as used.
   cell.classList.add("used");
@@ -171,11 +176,17 @@ function showAnswer() {
 }
 
 function closeModal() {
+
   clearInterval(timerInterval);
+
   timerInterval = null;
 
-  document.getElementById("question-modal").classList.remove("show");
+  timerPaused = false;
+
+  document.getElementById("question-modal")
+    .classList.remove("show");
 }
+
 // Allow Escape to close the question.
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
@@ -183,84 +194,156 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-function startTimer() {
-  clearInterval(timerInterval);
+// ==========================================
+// Reusable Timer
+// ==========================================
 
-  const timerDisplay = document.getElementById("timer-display");
-  const timerBar = document.getElementById("timer-bar");
-
-  timerStartTime = Date.now();
-
-  timerDisplay.textContent = TIMER_DURATION;
-  timerBar.style.transform = "scaleX(1)";
-
-  timerInterval = setInterval(() => {
-    const elapsed = Date.now() - timerStartTime;
-    const remaining = Math.max(0, TIMER_DURATION * 1000 - elapsed);
-
-    const seconds = Math.ceil(remaining / 1000);
-    const progress = remaining / (TIMER_DURATION * 1000);
-
-    timerDisplay.textContent = seconds;
-    timerBar.style.transform = `scaleX(${progress})`;
-
-    if (remaining <= 0) {
-      clearInterval(timerInterval);
-      timerInterval = null;
-
-      timerDisplay.textContent = "0";
-      timerBar.style.transform = "scaleX(0)";
-    }
-  }, 50);
-}
-
-function startFinalTimer() {
+function startTimer(type = "normal") {
 
   clearInterval(timerInterval);
 
-  const timerDisplay =
-    document.getElementById("final-timer-display");
+  activeTimerType = type;
 
-  const timerBar =
-    document.getElementById("final-timer-bar");
+  timerRemaining = TIMER_DURATION * 1000;
 
-  timerStartTime = Date.now();
+  timerPaused = false;
 
-  timerDisplay.textContent = TIMER_DURATION;
-  timerBar.style.transform = "scaleX(1)";
+  updateTimerDisplay();
+
+  updatePauseButton();
 
   timerInterval = setInterval(() => {
 
-    const elapsed =
-      Date.now() - timerStartTime;
+    if (timerPaused) {
+      return;
+    }
 
-    const remaining = Math.max(
-      0,
-      TIMER_DURATION * 1000 - elapsed
-    );
+    timerRemaining -= 50;
 
-    const seconds =
-      Math.ceil(remaining / 1000);
+    if (timerRemaining <= 0) {
 
-    const progress =
-      remaining / (TIMER_DURATION * 1000);
-
-    timerDisplay.textContent = seconds;
-
-    timerBar.style.transform =
-      `scaleX(${progress})`;
-
-    if (remaining <= 0) {
+      timerRemaining = 0;
 
       clearInterval(timerInterval);
-      timerInterval = null;
 
-      timerDisplay.textContent = "0";
-      timerBar.style.transform = "scaleX(0)";
+      timerInterval = null;
     }
+
+    updateTimerDisplay();
 
   }, 50);
 }
+
+
+function updateTimerDisplay() {
+
+  const seconds = Math.ceil(
+    timerRemaining / 1000
+  );
+
+  const progress =
+    timerRemaining /
+    (TIMER_DURATION * 1000);
+
+  let display;
+  let bar;
+
+  if (activeTimerType === "final") {
+
+    display =
+      document.getElementById("final-timer-display");
+
+    bar =
+      document.getElementById("final-timer-bar");
+
+  } else {
+
+    display =
+      document.getElementById("timer-display");
+
+    bar =
+      document.getElementById("timer-bar");
+  }
+
+  if (!display || !bar) {
+    return;
+  }
+
+  display.textContent = seconds;
+
+  bar.style.transform =
+    `scaleX(${progress})`;
+}
+
+
+function toggleTimer() {
+
+  if (timerRemaining <= 0) {
+    return;
+  }
+
+  timerPaused = !timerPaused;
+
+  updatePauseButton();
+}
+
+
+function updatePauseButton() {
+
+  const buttonId =
+    activeTimerType === "final"
+      ? "final-timer-pause-btn"
+      : "timer-pause-btn";
+
+  const button =
+    document.getElementById(buttonId);
+
+  if (!button) {
+    return;
+  }
+
+  button.textContent =
+    timerPaused
+      ? "Resume"
+      : "Pause";
+}
+
+
+function restartTimer() {
+
+  clearInterval(timerInterval);
+
+  timerRemaining =
+    TIMER_DURATION * 1000;
+
+  timerPaused = false;
+
+  updateTimerDisplay();
+
+  updatePauseButton();
+
+  timerInterval = setInterval(() => {
+
+    if (timerPaused) {
+      return;
+    }
+
+    timerRemaining -= 50;
+
+    if (timerRemaining <= 0) {
+
+      timerRemaining = 0;
+
+      clearInterval(timerInterval);
+
+      timerInterval = null;
+    }
+
+    updateTimerDisplay();
+
+  }, 50);
+}
+
 // ==========================================
 // Final Jeopardy
 // ==========================================
@@ -296,7 +379,7 @@ function startFinalJeopardy() {
   goSlide("slide-final-jeopardy");
 
   // Start the 45-second timer
-  startFinalTimer();
+  startTimer("final");
 }
 
 function showFinalAnswer() {
@@ -309,10 +392,11 @@ function showFinalAnswer() {
 
 function closeFinalJeopardy() {
 
-  // Stop the timer
   clearInterval(timerInterval);
+
   timerInterval = null;
 
-  // Return to board
+  timerPaused = false;
+
   goSlide("slide-jeopardy");
 }
