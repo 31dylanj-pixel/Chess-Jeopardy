@@ -231,13 +231,28 @@
   
     </div>
   
-    <!-- Timer is OUTSIDE question-content -->
+    <!-- Timer -->
     <div class="question-timer">
-      <div id="timer-display">45</div>
-  
+
+      <div class="timer-display-row">
+        <span id="timer-display">45</span>
+        <span>seconds</span>
+      </div>
+    
       <div class="timer-track">
         <div id="timer-bar"></div>
       </div>
+    
+      <div class="timer-controls">
+        <button id="timer-pause-btn" onclick="toggleTimer()">
+          Pause
+        </button>
+    
+        <button onclick="restartTimer()">
+          Restart
+        </button>
+      </div>
+    
     </div>
   
   </div>
