@@ -407,17 +407,6 @@ button {
   pointer-events: none;
 }
 
-.jeopardy-cell.used::after {
-  content: "✓";
-
-  position: absolute;
-
-  font-size: 2rem;
-
-  font-weight: 900;
-
-  color: rgba(255, 255, 255, 0.16);
-}
 /* ==========================================
    FINAL JEOPARDY BUTTON
    ========================================== */
