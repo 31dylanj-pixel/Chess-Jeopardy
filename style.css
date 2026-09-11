@@ -193,221 +193,318 @@ button {
   opacity: 1;
 }
 
-/* Jeopardy */
+/* ==========================================
+   JEOPARDY BOARD
+   ========================================== */
+
 .jeopardy-slide {
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  padding: 1rem;
+  padding: 1.25rem;
 
-  gap: 0.5rem;
-}
-
-/* Final Jeopardy */
-
-.final-jeopardy-slide {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-
-  padding: 3rem;
+  gap: 0.8rem;
 
   background:
     radial-gradient(
-      circle at center,
-      #3730a3 0%,
-      #312e81 45%,
-      #1e1b4b 100%
-    );
+      circle at 50% 35%,
+      rgba(55, 48, 163, 0.35),
+      transparent 55%
+    ),
+    var(--background);
 }
 
-.final-jeopardy-content {
-  width: 100%;
-  max-width: 1100px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.final-jeopardy-label {
-  margin: 0 0 1rem;
-
-  font-size: 1.1rem;
-  font-weight: 700;
-
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-
-  color: var(--gold-light);
-}
-
-.final-jeopardy-content h2 {
-  margin: 0;
-
-  font-family: "Playfair Display", serif;
-
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  font-weight: 900;
-}
-
-.final-divider {
-  width: 140px;
-  height: 4px;
-
-  margin: 2rem 0;
-
-  border-radius: 999px;
-
-  background: var(--gold);
-}
-
-.final-question {
-  max-width: 950px;
-
-  margin: 0 0 2.5rem;
-
-  font-size: clamp(1.8rem, 4vw, 3.2rem);
-  font-weight: 700;
-
-  line-height: 1.4;
-}
-
-.final-answer {
-  display: none;
-
-  max-width: 850px;
-
-  margin: 0 0 2.5rem;
-
-  font-size: clamp(1.4rem, 3vw, 2.3rem);
-  font-weight: 700;
-
-  color: var(--gold-light);
-
-  line-height: 1.5;
-}
-
-.final-answer.show {
-  display: block;
-
-  animation: answerAppear 0.3s ease-out;
-}
-
-.final-buttons {
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  gap: 1rem;
-
-  flex-wrap: wrap;
-}
-
-.final-buttons .primary-button {
-  margin-top: 0;
-}
-
-.jeopardy-slide h2 {
-  font-size: 2rem;
-  font-weight: 700;
-}
+/* Board */
 
 .jeopardy-board {
   width: 100%;
-  max-width: 900px;
+  max-width: 1100px;
 
-  height: 78vh;
+  height: 74vh;
 
   display: grid;
 
   grid-template-columns: repeat(5, minmax(0, 1fr));
   grid-template-rows: repeat(6, minmax(60px, 1fr));
 
-  gap: 0.4rem;
+  gap: 0.55rem;
+
+  perspective: 1000px;
 }
 
+/* ==========================================
+   CATEGORY HEADERS
+   ========================================== */
+
 .category-cell {
-  border-radius: 0.6rem;
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   text-align: center;
-  background: var(--indigo-dark);
+
+  padding: 0.7rem;
+
+  border-radius: 0.75rem;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(55, 48, 163, 0.95),
+      rgba(30, 27, 75, 0.98)
+    );
+
+  border: 1px solid rgba(165, 180, 252, 0.28);
+
   color: white;
-  font-weight: 700;
-  font-size: 1.4rem;
-  padding: 0.75rem;
-}
 
-.jeopardy-cell {
-  border-radius: 0.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.category-cell {
-  background: var(--indigo-dark);
-  color: white;
-  font-weight: 700;
-  padding: 0.75rem;
-}
-
-.jeopardy-cell {
-  border: 0;
-  background: var(--gold);
-  color: var(--background);
-  font-size: clamp(1.25rem, 3vw, 2rem);
-  font-weight: 900;
-  cursor: pointer;
-  transition: transform 0.2s, opacity 0.2s;
-}
-
-.jeopardy-cell:hover:not(.used) {
-  transform: scale(1.04);
-}
-
-.jeopardy-cell.used {
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-.final-jeopardy-button {
-  width: 100%;
-  max-width: 900px;
-
-  height: 60px;
-
-  border: 0;
-  border-radius: 0.6rem;
-
-  background: var(--gold);
-  color: var(--background);
-
-  font-family: "DM Sans", sans-serif;
   font-size: 1.25rem;
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  overflow: hidden;
+}
+
+/* Gold accent line */
+
+.category-cell::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: 0;
+  left: 15%;
+
+  width: 70%;
+  height: 3px;
+
+  border-radius: 999px;
+
+  background: var(--gold);
+}
+
+/* ==========================================
+   QUESTION CELLS
+   ========================================== */
+
+.jeopardy-cell {
+  position: relative;
+
+  border: 1px solid rgba(245, 158, 11, 0.25);
+
+  border-radius: 0.75rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fbbf24,
+      #f59e0b
+    );
+
+  color: var(--background);
+
+  font-size: clamp(1.3rem, 2.7vw, 2rem);
+
   font-weight: 900;
 
   cursor: pointer;
+
+  box-shadow:
+    0 7px 14px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  overflow: hidden;
 
   transition:
     transform 0.2s ease,
-    background 0.2s ease;
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+/* Shine */
+
+.jeopardy-cell::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 70%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.22),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.45s ease;
+}
+
+/* Hover */
+
+.jeopardy-cell:hover:not(.used) {
+  transform: translateY(-4px) scale(1.025);
+
+  filter: brightness(1.08);
+
+  box-shadow:
+    0 12px 25px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(245, 158, 11, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.jeopardy-cell:hover:not(.used)::before {
+  left: 140%;
+}
+
+/* Click */
+
+.jeopardy-cell:active:not(.used) {
+  transform: scale(0.98);
+}
+
+/* ==========================================
+   USED QUESTIONS
+   ========================================== */
+
+.jeopardy-cell.used {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(49, 46, 129, 0.65),
+      rgba(30, 27, 75, 0.8)
+    );
+
+  border-color: rgba(165, 180, 252, 0.12);
+
+  color: rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    inset 0 0 15px rgba(0, 0, 0, 0.2);
+
+  cursor: default;
+
+  pointer-events: none;
+}
+
+.jeopardy-cell.used::after {
+  content: "✓";
+
+  position: absolute;
+
+  font-size: 2rem;
+
+  font-weight: 900;
+
+  color: rgba(255, 255, 255, 0.16);
+}
+/* ==========================================
+   FINAL JEOPARDY BUTTON
+   ========================================== */
+
+.final-jeopardy-button {
+  position: relative;
+
+  width: 100%;
+  max-width: 1100px;
+
+  height: 58px;
+
+  border: 1px solid rgba(245, 158, 11, 0.55);
+
+  border-radius: 0.75rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fbbf24,
+      #f59e0b
+    );
+
+  color: var(--background);
+
+  font-family: "DM Sans", sans-serif;
+
+  font-size: 1.15rem;
+  font-weight: 900;
+
+  letter-spacing: 0.12em;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(245, 158, 11, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.final-jeopardy-button::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 60%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.5s ease;
 }
 
 .final-jeopardy-button:hover {
-  transform: translateY(-2px);
-  background: var(--gold-light);
+  transform: translateY(-3px);
+
+  filter: brightness(1.08);
+
+  box-shadow:
+    0 12px 25px rgba(0, 0, 0, 0.35),
+    0 0 25px rgba(245, 158, 11, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
+
+.final-jeopardy-button:hover::before {
+  left: 140%;
+}
+
+.final-jeopardy-button:active {
+  transform: translateY(0);
+}
+
 /* Full-Screen Question */
 
 .question-screen {
