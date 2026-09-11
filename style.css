@@ -659,6 +659,115 @@ button {
 }
 
 /* ==========================================
+   FINAL JEOPARDY
+   ========================================== */
+
+.final-jeopardy-slide {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 3rem 3rem 10rem;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #3730a3 0%,
+      #312e81 45%,
+      #1e1b4b 100%
+    );
+}
+
+.final-jeopardy-content {
+  width: 100%;
+  max-width: 1300px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.final-jeopardy-label {
+  margin: 0 0 1rem;
+
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+
+  color: var(--gold-light);
+}
+
+.final-jeopardy-content h2 {
+  margin: 0;
+
+  font-family: "Playfair Display", serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 900;
+}
+
+.final-divider {
+  width: 120px;
+  height: 4px;
+
+  margin: 1.75rem 0;
+
+  border-radius: 999px;
+  background: var(--gold);
+}
+
+.final-question {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 0 2rem;
+
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.35;
+
+  color: white;
+}
+
+.final-answer {
+  display: none;
+
+  width: 100%;
+  max-width: 1000px;
+
+  margin: 0 0 2rem;
+
+  font-size: clamp(1.4rem, 3vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.5;
+
+  color: var(--gold-light);
+}
+
+.final-answer.show {
+  display: block;
+  animation: answerAppear 0.3s ease-out;
+}
+
+.final-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.final-buttons .primary-button {
+  margin-top: 0;
+}
+
+/* ==========================================
    TIMER
    ========================================== */
 
